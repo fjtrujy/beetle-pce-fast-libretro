@@ -5,9 +5,6 @@
 
 #if defined(FRONTEND_SUPPORTS_RGB565)
 /* 16bit color - RGB565 */
-#define RED_MASK  0xf800
-#define GREEN_MASK 0x7e0
-#define BLUE_MASK 0x1f
 #define RED_EXPAND 3
 #define GREEN_EXPAND 2
 #define BLUE_EXPAND 3
@@ -15,11 +12,16 @@
 #define GREEN_SHIFT 5
 #define BLUE_SHIFT 0
 #define MAKECOLOR(r, g, b, a) (((r >> RED_EXPAND) << RED_SHIFT) | ((g >> GREEN_EXPAND) << GREEN_SHIFT) | ((b >> BLUE_EXPAND) << BLUE_SHIFT))
+#elif defined(ABGR1555)
+#define BLUE_EXPAND 3
+#define GREEN_EXPAND 3
+#define RED_EXPAND 3
+#define BLUE_SHIFT 10
+#define GREEN_SHIFT 5
+#define RED_SHIFT 0
+#define MAKECOLOR(r, g, b, a) (((r >> RED_EXPAND) << RED_SHIFT) | ((g >> GREEN_EXPAND) << GREEN_SHIFT) | ((b >> BLUE_EXPAND) << BLUE_SHIFT))
 #else
 /* 16bit color - RGB555 */
-#define RED_MASK  0x7c00
-#define GREEN_MASK 0x3e0
-#define BLUE_MASK 0x1f
 #define RED_EXPAND 3
 #define GREEN_EXPAND 3
 #define BLUE_EXPAND 3
